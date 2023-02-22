@@ -1,0 +1,33 @@
+/*
+Sources:
+I used the iostream library from C++ for this porgram
+I used the cstring library from C++ for this program
+I structured the layout of my code based on an article from Snyk
+Security Research Team. Url: https://snyk.io/blog/buffer-overflow-attacks-in-c/
+
+This program is a representation of how a malicious attacker can bypass
+password authentication through use of a buffer overflow.
+*/
+
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    // User can input "absolute" and will be able to bypass password authentication
+    char input[8];
+    char password[8] = "apples";
+    
+    cout << "Enter password: ";
+    cin >> input;
+    
+    if (std::strncmp(input, password, 8) == 0) {
+        cout << "Welcome Back";
+    } else {
+        cout << "Incorrect...";
+    }
+    return 0;
+}
